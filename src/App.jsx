@@ -1,12 +1,32 @@
-import { useState } from "react";
 import "./App.css";
 
-function App() {
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import Home from "./pages/Home";
+import AboutUS from "./pages/AboutUS";
+import MainLayout from "./layouts/MainLayout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "/about-us", element: <AboutUS /> },
+    ],
+  },
+  // {
+  //   path: "/about-us",
+  //   element: <AboutUS />,
+  // },
+]);
+
+function Router() {
   return (
     <>
-      <h1 className="text-9xl text-red-500">hello</h1>
+      <RouterProvider router={router} />,
     </>
   );
 }
 
-export default App;
+export default Router;
